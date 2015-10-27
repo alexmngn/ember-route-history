@@ -1,25 +1,41 @@
-# Ember-history-route
+# Ember-route-history [![Build Status](https://travis-ci.org/4lex-io/ember-route-history.png?branch=master)](https://travis-ci.org/4lex-io/ember-route-history)
 
-This README outlines the details of collaborating on this Ember addon.
+This is an Ember-CLI addon. It provides a service which keeps an history of the visited routes. You will be able to know what is the current route, and what was the previously visited routes.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+Using ember-cli:
 
-## Running
+```
+ember install ember-route-history
+```
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+## Usage
 
-## Running Tests
+By default, **the service is injected into all routes of your application**. You can also inject it in any controllers, components or other services.
 
-* `ember test`
-* `ember test --server`
+**You need to extend the `RouteHistoryMixin` in the routes you would like to keep an history of.** If you don't use this mixin in a certain route, it won't be tracked.
 
-## Building
+If you don't want to add this mixin for all your routes, you can simply create a base route that will extend this mixin, then you can extend your base route on all the routes of your application.
 
-* `ember build`
+```
+import Ember from 'ember';
+import RouteHistoryMixin from 'ember-route-history/mixins/routes/route-history';
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+export default Ember.Route.extend(RouteHistoryMixin, {
+    /* Your code here */
+});
+```
+
+To use it, in a component for example:
+
+```
+export default Ember.Component.extend({
+    routeHistory: Ember.inject.service(),
+
+    onInsert: Ember.on('didInsertElement', function () {
+        const currentRouteName = this.get('routeHistory.current'); //Returns the current route name.
+        const previousRouteNames = this.get('routeHistory.history'); //Returns an array of route names.
+    }
+});
+```

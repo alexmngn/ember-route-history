@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-history-route'
+  name: 'ember-route-history'
 };
