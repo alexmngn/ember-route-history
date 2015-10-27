@@ -39,3 +39,9 @@ export default Ember.Component.extend({
     }
 });
 ```
+
+By default, only 10 items are saved in the history. You can increase the size of the stack by setting `maxHistoryLength`.
+
+```
+	this.set('routeHistory.maxHistoryLength', 50);
+```
