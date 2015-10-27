@@ -1,4 +1,4 @@
-# Ember-route-history [![Build Status](https://travis-ci.org/4lex-io/ember-route-history.png?branch=master)](https://travis-ci.org/4lex-io/ember-route-history)
+# Ember-route-history [![Build Status](https://travis-ci.org/4lex-io/ember-route-history.png?branch=master)](https://travis-ci.org/4lex-io/ember-route-history) 
 
 This is an Ember-CLI addon. It provides a service which keeps an history of the visited routes. You will be able to know what is the current route, and what was the previously visited routes.
 
