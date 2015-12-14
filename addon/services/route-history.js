@@ -18,6 +18,17 @@ export default Ember.Service.extend({
 	 */
 	current: '',
 
+	previous: Ember.computed('history.[]', function() {
+		const history = this.get('history'),
+					historyLength = history.get('length');
+
+		if (!Ember.isEmpty(history) && historyLength > 1) {
+			return history.objectAt(historyLength - 2);
+		}
+
+		return null;
+	}),
+
 	/**
 	 * Array contening the history of routes that have been visited.
 	 *
