@@ -45,6 +45,25 @@ test('Service set the current route properly', function (assert) {
 	assert.ok(subject.get('history.length') === 1, 'History has 1 entry after setting the current route to "post"');
 });
 
+test('Service can load previous route properly', function (assert) {
+	assert.expect(3);
+
+	const subject = this.subject();
+	const route = Ember.Object.create({});
+
+	route.set('routeName', 'firstRoute');
+	subject.setCurrentRoute(route);
+	assert.ok(subject.get('previous') === null, 'The previous route does not exist.');
+
+	route.set('routeName', 'secondRoute');
+	subject.setCurrentRoute(route);
+	assert.ok(subject.get('previous') === 'firstRoute', 'The previous route is "firstRoute"');
+
+	route.set('routeName', 'thirdRoute');
+	subject.setCurrentRoute(route);
+	assert.ok(subject.get('previous') === 'secondRoute', 'The previous route is "secondRoute"');
+});
+
 test('Service doesn\'t go higher than the maxLength', function (assert) {
 	assert.expect(2);
 
