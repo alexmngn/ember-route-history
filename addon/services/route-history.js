@@ -8,6 +8,8 @@
 
 import Ember from 'ember';
 
+const { computed } = Ember;
+
 export default Ember.Service.extend({
 
 	/**
@@ -18,9 +20,15 @@ export default Ember.Service.extend({
 	 */
 	current: '',
 
-	previous: Ember.computed('history.[]', function() {
-		const history = this.get('history'),
-					historyLength = history.get('length');
+	/**
+	 * Previous route. If there is no previous route, returns null
+	 *
+	 * @property previous
+	 * @type {String}
+	 */
+	previous: computed('history.[]', function() {
+		const history = this.get('history');
+		const historyLength = history.get('length');
 
 		if (!Ember.isEmpty(history) && historyLength > 1) {
 			return history.objectAt(historyLength - 2);
