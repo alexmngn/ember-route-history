@@ -34,9 +34,14 @@ export default Ember.Component.extend({
     routeHistory: Ember.inject.service(),
 
     onInsert: Ember.on('didInsertElement', function () {
-        const currentRouteName = this.get('routeHistory.current'); // Returns the current route name.
-        const previousRouteName = this.get('routeHistory.previous'); // Returns the name of the previously visited route.
-        const fullRouteHistory = this.get('routeHistory.history'); // Returns an array of route names.
+        const currentRouteName = this.get('routeHistory.current');      // Returns the current route name.
+        const currentRouteID = this.get('routeHistory.currentRouteID'); // Returns the current route id.
+
+        const previousRouteName = this.get('routeHistory.previous');      // Returns the name of the previously visited route.
+        const previousRouteID = this.get('routeHistory.previousRouteID'); // Returns the name of the previously visited route id.
+
+        const fullRouteHistory = this.get('routeHistory.history'); // Returns an array of route objects (name and id).
+        const routeHistory = this.get('routeHistory.history');     // Returns an array of route names.
     }
 });
 ```
