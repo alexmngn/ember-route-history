@@ -7,6 +7,6 @@ export function initialize(application) {
 
 export default {
 	name: 'injectRouteHistory',
-	after: 'store',
+	after: 'ember-data',
 	initialize: initialize
 };
