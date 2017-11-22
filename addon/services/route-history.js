@@ -6,11 +6,12 @@
  * @extends Ember.Service
  */
 
-import Ember from 'ember';
+import Service from '@ember/service';
+import { A } from '@ember/array';
+import { computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
-const { computed } = Ember;
-
-export default Ember.Service.extend({
+export default Service.extend({
 
 	/**
 	 * Current route
@@ -30,7 +31,7 @@ export default Ember.Service.extend({
 		const history = this.get('history');
 		const historyLength = history.get('length');
 
-		if (!Ember.isEmpty(history) && historyLength > 1) {
+		if (!isEmpty(history) && historyLength > 1) {
 			return history.objectAt(historyLength - 2);
 		}
 
@@ -43,7 +44,7 @@ export default Ember.Service.extend({
 	 * @property history
 	 * @type {Array}
 	 */
-	history: Ember.A(),
+	history: A(),
 
 	/**
 	 * Maximum number of entries to keep in the history.
@@ -56,7 +57,7 @@ export default Ember.Service.extend({
 	/**
 	 * Pushes a route name onto the history stack.
 	 *
-	 * @method pushHistoryState
+	 * @method addRouteToHistory
 	 * @param routeName
 	 * @return The current history stack.
 	 */
