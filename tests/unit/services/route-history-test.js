@@ -2,12 +2,15 @@
  * Route History Service Unit Test
  */
 
+import EmberObject from '@ember/object';
+
+import { A } from '@ember/array';
+
 import { moduleFor, test } from 'ember-qunit';
-import Ember from 'ember';
 
 moduleFor('service:route-history', 'Unit - Service - Route History Service', {
 	setup: function () {
-		this.subject().set('history', Ember.A());
+		this.subject().set('history', A());
 	},
 	teardown: function () {
 	}
@@ -31,7 +34,7 @@ test('Service set the current route properly', function (assert) {
 	assert.expect(3);
 
 	const subject = this.subject();
-	const route = Ember.Object.create({});
+	const route = EmberObject.create({});
 
 	route.set('routeName', 'loading');
 	subject.setCurrentRoute(route);
@@ -49,7 +52,7 @@ test('Service can load previous route properly', function (assert) {
 	assert.expect(3);
 
 	const subject = this.subject();
-	const route = Ember.Object.create({});
+	const route = EmberObject.create({});
 
 	route.set('routeName', 'firstRoute');
 	subject.setCurrentRoute(route);
@@ -68,7 +71,7 @@ test('Service doesn\'t go higher than the maxLength', function (assert) {
 	assert.expect(2);
 
 	const subject = this.subject();
-	const route = Ember.Object.create({});
+	const route = EmberObject.create({});
 
 	subject.set('maxHistoryLength', 2);
 
