@@ -1,6 +1,6 @@
 {
   "name": "ember-route-history",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "This is an Ember-CLI addon. It provides a service which keeps an history of the visited routes. You will be able to know what is the current route, and what was the previously visited routes.",
   "keywords": [
     "ember-addon",
