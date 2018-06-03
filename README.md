@@ -18,7 +18,7 @@ By default, **the service is injected into all routes of your application**. You
 
 If you don't want to add this mixin for all your routes, you can simply create a base route that will extend this mixin, then you can extend your base route on all the routes of your application.
 
-```
+```js
 import Ember from 'ember';
 import RouteHistoryMixin from 'ember-route-history/mixins/routes/route-history';
 
@@ -29,7 +29,7 @@ export default Ember.Route.extend(RouteHistoryMixin, {
 
 To use it, in a component for example:
 
-```
+```js
 export default Ember.Component.extend({
     routeHistory: Ember.inject.service(),
 
@@ -43,6 +43,6 @@ export default Ember.Component.extend({
 
 By default, only 10 items are saved in the history. You can increase the size of the stack by setting `maxHistoryLength`.
 
-```
+```js
 this.set('routeHistory.maxHistoryLength', 50);
 ```
