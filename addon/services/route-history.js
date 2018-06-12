@@ -61,11 +61,11 @@ export default Service.extend({
 	 * @param routeName
 	 * @return The current history stack.
 	 */
-	addRouteToHistory(routeName) {
+	addRouteToHistory(routeName, params) {
 		const maxHistoryLength = this.get('maxHistoryLength');
 		let history = this.get('history');
 
-		history.pushObject(routeName);
+		history.pushObject([routeName, params]);
 
 		if (history.get('length') > maxHistoryLength) {
 			history.shiftObject();
@@ -81,8 +81,8 @@ export default Service.extend({
 	setCurrentRoute(route) {
 		const routeName = route.get('routeName');
 		if (routeName !== 'loading') {
-			this.set('current', routeName);
-			this.addRouteToHistory(routeName);
+			this.set('current', [routeName, route.paramsFor(routeName)]);
+			this.addRouteToHistory(routeName, route.paramsFor(routeName));
 		}
 	}
 });
