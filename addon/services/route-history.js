@@ -82,7 +82,11 @@ export default Service.extend({
 		const routeName = route.get('routeName');
 		if (routeName !== 'loading') {
 			this.set('current', routeName);
-			this.addRouteToHistory(routeName);
+      // we want to save the full url to the route history as well
+			this.addRouteToHistory({
+        routeName,
+        url: window.location.href
+      });
 		}
 	}
 });
