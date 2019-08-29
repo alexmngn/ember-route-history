@@ -79,13 +79,39 @@ export default Service.extend({
 	 * @param route
 	 */
 	setCurrentRoute(route) {
-		const routeName = route.get('routeName');
+    const routeName = route.get('routeName');
+
+    // get all params for this route, this includes both ids passed and query params
+    const allParams = route.paramsFor(`${routeName}`);
+
+    // Create an object to house the extracted query params
+    const queryParams = {};
+
+    // Create an object to house all extracted ids
+    const ids = {};
+
+    // let's loop through all params and figure out if they belong in the ids object or in the queryParams object
+    for (let key in allParams) {
+      if (route.get('queryParams')[`${key}`]) {
+        // we found this param defined in the routes query params
+        // save to the queryParams object (but only if a value is not undefined)
+        if (typeof allParams[`${key}`] !== "undefined") {
+          queryParams[`${key}`] = allParams[`${key}`];
+        }
+      } else {
+        // this param was not found in the query params object
+        // save to the ids object
+        ids[`${key}`] = allParams[`${key}`];
+      }
+    }
+
 		if (routeName !== 'loading') {
 			this.set('current', routeName);
-      // we want to save the full url to the route history as well
+      // we want to save the route name as well as any query params or ids this route may have
 			this.addRouteToHistory({
         routeName,
-        url: window.location.href
+        queryParams,
+        ids
       });
 		}
 	}
